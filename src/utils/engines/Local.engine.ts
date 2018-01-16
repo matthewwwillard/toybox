@@ -1,5 +1,5 @@
 import {BaseEngineCalls} from "../BaseEngineCalls";
-import * as fs from 'fs';
+import * as fs from 'fs-extra';
 import * as path from 'path';
 import {blob} from "aws-sdk/clients/codecommit";
 
@@ -15,7 +15,7 @@ export default class LocalEngine extends BaseEngineCalls
     }
     private fromBase64(imageData:any, filepath:any)
     {
-        return fs.writeFileSync(filepath, imageData);
+        return fs.outputFileSync(filepath, imageData);
     }
     protected async init()
     {
