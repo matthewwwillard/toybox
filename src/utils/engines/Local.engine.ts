@@ -1,6 +1,7 @@
 import {BaseEngineCalls} from "../BaseEngineCalls";
 import * as fs from 'fs';
 import * as path from 'path';
+import {blob} from "aws-sdk/clients/codecommit";
 
 export default class LocalEngine extends BaseEngineCalls
 {
@@ -8,7 +9,15 @@ export default class LocalEngine extends BaseEngineCalls
     {
         super(config);
     }
-    protected init()
+    private toBase64(filePath:string)
+    {
+        return Buffer.from(fs.readFileSync(filePath)).toString('base64');
+    }
+    private fromBase64(imageData:any, filepath:any)
+    {
+        return fs.writeFileSync(filepath, imageData);
+    }
+    protected async init()
     {
         //generate our upload dir
         try {
@@ -20,24 +29,47 @@ export default class LocalEngine extends BaseEngineCalls
         {
             console.log('TOY BROKE : ' + err.message);
         }
+        return;
     }
-    public get (filename:string)
+    public async get (filename:string)
     {
-
+        return new Promise((resolve, reject)=>{
+            try
+            {
+                if(!fs.existsSync(this.myConfigs.uploadDir + filename))
+                    return reject("Can't find file : " + this.myConfigs.uploadDir + filename);
+                return resolve(this.toBase64(this.myConfigs.uploadDir + filename));
+            }
+            catch (err)
+            {
+                reject(err.message);
+            }
+        });
     }
-    public set(source:any, filename:string, dir:string = '/')
+    public async set(source:any, filePath:string)
     {
-        try
-        {
-
-        }
-        catch (err)
-        {
-
-        }
+        return new Promise((resolve, reject)=>{
+            try
+            {
+                return this.fromBase64(source, filePath);
+            }
+            catch (err)
+            {
+                reject(err.message);
+            }
+        });
     }
-    public delete()
+    public async delete()
     {
+        return new Promise((resolve, reject)=>{
+            try
+            {
 
+            }
+            catch (err)
+            {
+                reject(err.message);
+            }
+        });
     }
 }
