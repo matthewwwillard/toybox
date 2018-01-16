@@ -33,7 +33,7 @@ export default class LocalEngine extends BaseEngineCalls
     }
     public async get (filename:string)
     {
-        return new Promise((resolve, reject)=>{
+        return new Promise<any>((resolve, reject)=>{
             try
             {
                 if(!fs.existsSync(this.myConfigs.uploadDir + filename))
@@ -48,7 +48,7 @@ export default class LocalEngine extends BaseEngineCalls
     }
     public async set(source:any, filePath:string)
     {
-        return new Promise((resolve, reject)=>{
+        return new Promise<any>((resolve, reject)=>{
             try
             {
                 return this.fromBase64(source, filePath);
@@ -61,7 +61,7 @@ export default class LocalEngine extends BaseEngineCalls
     }
     public async delete()
     {
-        return new Promise((resolve, reject)=>{
+        return new Promise<any>((resolve, reject)=>{
             try
             {
 

@@ -8,14 +8,20 @@ export default class S3Engine extends BaseEngineCalls
     }
     public get ()
     {
+        return new Promise<any>(()=>{
 
+        })
     }
     public set()
     {
+        return new Promise<any>(()=>{
 
+        })
     }
     public delete()
     {
+        return new Promise<any>(()=>{
 
+        })
     }
 }
