@@ -1,8 +1,8 @@
 {
   "name": "toybox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "White Lego storage engine!",
-  "main": "index.js",
+  "main": "bin/ToyBox.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install":"tsc"
