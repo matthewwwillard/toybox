@@ -12,8 +12,8 @@ export class BaseEngineCalls
         this.init();
     }
     protected init(){}
-    public get(){}
-    public set(){}
-    public delete(){}
+    protected get(filename?:string){}
+    public set(source?:any, filename?:string, dir:string = '/'){}
+    public delete(filename?:string){}
 
 }
