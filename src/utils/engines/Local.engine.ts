@@ -11,9 +11,14 @@ export default class LocalEngine extends BaseEngineCalls
     protected init()
     {
         //generate our upload dir
-        if(!fs.existsSync(this.myConfigs.uploadDir))
+        try {
+            if (!fs.existsSync(this.myConfigs.uploadDir)) {
+                fs.mkdirSync(this.myConfigs.uploadDir);
+            }
+        }
+        catch(err)
         {
-            fs.mkdirSync(this.myConfigs.uploadDir);
+            console.log('TOY BROKE : ' + err.message);
         }
     }
     public get (filename:string)
