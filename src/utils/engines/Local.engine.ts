@@ -15,7 +15,7 @@ export default class LocalEngine extends BaseEngineCalls
     }
     private async fromBase64(imageData:any, filepath:any)
     {
-        return await fs.outputFile(this.myConfigs.uploadDir + filepath, imageData);
+        return await fs.outputFileSync(this.myConfigs.uploadDir + filepath, imageData);
     }
     protected async init()
     {
@@ -51,7 +51,7 @@ export default class LocalEngine extends BaseEngineCalls
         return new Promise<any>((resolve, reject)=>{
             try
             {
-                return this.fromBase64(source, filePath);
+                return resolve(this.fromBase64(source, filePath));
             }
             catch (err)
             {
