@@ -15,7 +15,7 @@ export default class LocalEngine extends BaseEngineCalls
     }
     private async fromBase64(data:any, filepath:any)
     {
-        return await fs.outputFileSync(this.myConfigs.uploadDir + filepath, btoa(data));
+        return await fs.outputFileSync(this.myConfigs.uploadDir + filepath, Buffer.from(data, 'base64').toString());
     }
     protected async init()
     {
