@@ -9,13 +9,13 @@ export default class LocalEngine extends BaseEngineCalls
     {
         super(config);
     }
-    private toBase64(filePath:string)
+    private async toBase64(filePath:string)
     {
-        return Buffer.from(fs.readFileSync(filePath)).toString('base64');
+        return await Buffer.from(fs.readFileSync(filePath)).toString('base64');
     }
-    private fromBase64(imageData:any, filepath:any)
+    private async fromBase64(imageData:any, filepath:any)
     {
-        return fs.outputFileSync(this.myConfigs.uploadDir + filepath, imageData);
+        return await fs.outputFile(this.myConfigs.uploadDir + filepath, imageData);
     }
     protected async init()
     {
